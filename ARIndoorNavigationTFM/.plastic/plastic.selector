@@ -1,0 +1,4 @@
+repository "ARIndoorNavigationTFM@apo00015@cloud"
+  path "/"
+    smartbranch "/main/BLE" 
+     
