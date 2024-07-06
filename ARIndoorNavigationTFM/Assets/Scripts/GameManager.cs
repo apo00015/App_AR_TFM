@@ -1,18 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 using System;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject CameraAr;
-    [SerializeField] private Text position;
+    public static GameManager instance { get; private set; }
     public event Action OnMainMenu;
     public event Action OnItemsMenu;
-
-    // Patrón Singleton
-    public static GameManager instance { get; private set; }
 
     private void Awake(){
         if (instance != null && instance != this){
@@ -29,11 +24,10 @@ public class GameManager : MonoBehaviour
             
              Vector3 postionMapa = CameraAr.transform.position;
              postionMapa.x = ControllerPlayer.instance.positionPlayer.x;
+             postionMapa.y = ControllerPlayer.instance.positionPlayer.y;
              postionMapa.z = ControllerPlayer.instance.positionPlayer.z;
 
              CameraAr.transform.position = postionMapa;
-
-             position.text = postionMapa.ToString();
 
         }
         MainMenu();
@@ -49,7 +43,4 @@ public class GameManager : MonoBehaviour
         Debug.Log("Items Menu Activated");
     }
 
-    // public void CloseApp(){
-    //     Application.Quit();
-    // }
 }

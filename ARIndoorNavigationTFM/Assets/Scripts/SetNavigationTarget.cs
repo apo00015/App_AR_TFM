@@ -42,15 +42,21 @@ public class SetNavigationTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Comprobamos si el usuario está en la planta 1
         if (getHightPlayer()){
-            // Obtener el primer hijo y activarlo
             GameObject firstChild = edificio.transform.GetChild(0).gameObject;
             firstChild.SetActive(true);
         }else{
-            // Obtener el primer hijo y activarlo
             GameObject firstChild = edificio.transform.GetChild(0).gameObject;
             firstChild.SetActive(false);
         }
+
+        // Actualizamos la posicion del player con la misma posicion que la camara
+        Vector3 postionMapa = CameraAR.transform.position;
+        postionMapa.y = spehereOrigin.transform.position.y;
+
+        spehereOrigin.transform.position = postionMapa;
+
         // Comprobamos si la brujula está habilitada
         if (startTracking){
             // Modificamos la direccion de la cámara
@@ -61,6 +67,11 @@ public class SetNavigationTarget : MonoBehaviour
                 // Calcular la diferencia incremental
                 float diferenciaRotacion = gradosCompass - rotacionActualY;
 
+                if (!xr_origin_init){
+                        XROrigin.transform.rotation = rotacionInicial * Quaternion.Euler(0f, 180 + rotacionActualY, 0f);
+                        xr_origin_init = true;
+                }
+
                 if (Mathf.Abs(diferenciaRotacion) > 10f){
                     // Aplicar la diferencia incremental a la rotación actual
                     rotacionActualY += diferenciaRotacion;
@@ -69,16 +80,12 @@ public class SetNavigationTarget : MonoBehaviour
                     rotacionActualY = Mathf.Repeat(rotacionActualY, 360f);
 
                     // Aplicar la rotación al objeto spehereOrigin
-                    spehereOrigin.transform.rotation = rotacionInicial * Quaternion.Euler(0f, rotacionActualY, 0f);
+                    spehereOrigin.transform.rotation = rotacionInicial * Quaternion.Euler(0f, 40 + rotacionActualY, 0f);
+
                     
-                    if (!xr_origin_init){
-                        XROrigin.transform.rotation = rotacionInicial * Quaternion.Euler(0f, 180 + rotacionActualY, 0f);
-                        xr_origin_init = true;
-                    }
+                    
                 }
-                
             }
-            
         }
 
         // Comprobamos si debemos calcular la ruta hacia un objetivo válido
