@@ -49,8 +49,10 @@ public class ItemButtonManager : MonoBehaviour
 
     public void ChangePositionTarget(int pos = 0, bool redireccion = true, bool is_dropdown = true){
         nameItemSeleccionado = itemName;
-        //Debug.Log("La posicion seleccionada es: " + pos + ", el nº de posiciones es: " + positions.Count + " ---- " + "El dropdown es: " + is_dropdown + " el is_concreta es: " + isDireccionConcreta);
+        Debug.Log("La posicion seleccionada es: " + pos + ", el nº de posiciones es: " + positions.Count + " ---- " + "El dropdown es: " + is_dropdown + " el is_concreta es: " + isDireccionConcreta);
+        Debug.Log("La pos es: " + positions[pos]);
         itemNavTargetObject.transform.position = positions[pos];
+        Debug.Log("La pos del target es: " + itemNavTargetObject.transform.position);
         // Activamos la línea
         itemNavTargetObject.SetActive(true);
 

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TBEasyWebCam;
+using EasyUI.Toast ;
 
 public class QRDecodeTest : MonoBehaviour
 {
@@ -16,22 +17,30 @@ public class QRDecodeTest : MonoBehaviour
 		if (this.scanLineObj != null)
 		{
 			// Decodificamos el QR
-			string[] valoresData = dataText.Split(',');
-			// Parse the values and create the vectors
-			Vector3 positionPlayer = new Vector3(
-				float.Parse(valoresData[0]),
-				float.Parse(valoresData[1]),
-				float.Parse(valoresData[2])
-			);
-	
-			this.scanLineObj.SetActive(false);
+			try{
+				string[] valoresData = dataText.Split(',');
+				// Parse the values and create the vectors
+				Vector3 positionPlayer = new Vector3(
+					float.Parse(valoresData[0]),
+					float.Parse(valoresData[1]),
+					float.Parse(valoresData[2])
+				);
+		
+				this.scanLineObj.SetActive(false);
 
-			// Asignamos las variables a la clase Singleton
-			ControllerPlayer.instance.positionPlayer = positionPlayer;
+				// Asignamos las variables a la clase Singleton
+				ControllerPlayer.instance.positionPlayer = positionPlayer;
 
-			Stop();
-			// Volvemos a la escena main
-			SceneManager.LoadScene("Main");
+				Stop();
+				// Volvemos a la escena main
+				SceneManager.LoadScene("Main");
+			}
+			catch (Exception ex)
+			{
+				showToast("No se reconoce el formato del QR");
+				Reset();
+			}
+			
 		}
 
 	}
@@ -79,6 +88,10 @@ public class QRDecodeTest : MonoBehaviour
 		}
 		//Application.LoadLevel(scenename);
 		SceneManager.LoadScene(scenename);
+	}
+
+	public void showToast(string message){
+		Toast.Show(message, 3f, ToastColor.Red) ;
 	}
     
 

@@ -82,8 +82,6 @@ public class SetNavigationTarget : MonoBehaviour
                     // Aplicar la rotación al objeto spehereOrigin
                     spehereOrigin.transform.rotation = rotacionInicial * Quaternion.Euler(0f, 40 + rotacionActualY, 0f);
 
-                    
-                    
                 }
             }
         }
@@ -112,7 +110,7 @@ public class SetNavigationTarget : MonoBehaviour
 
     private bool getHightPlayer(){
         if (spehereOrigin.transform.position.y > 0){
-            Debug.Log("La posición Y es mayor que 0: " + spehereOrigin);
+            // Debug.Log("La posición Y es mayor que 0: " + spehereOrigin);
             return true;
         }
 
