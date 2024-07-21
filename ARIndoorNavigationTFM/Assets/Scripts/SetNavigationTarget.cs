@@ -80,7 +80,7 @@ public class SetNavigationTarget : MonoBehaviour
                     rotacionActualY = Mathf.Repeat(rotacionActualY, 360f);
 
                     // Aplicar la rotación al objeto spehereOrigin
-                    spehereOrigin.transform.rotation = rotacionInicial * Quaternion.Euler(0f, 40 + rotacionActualY, 0f);
+                    spehereOrigin.transform.rotation = rotacionInicial * Quaternion.Euler(0f, 45 + rotacionActualY, 0f);
 
                 }
             }
