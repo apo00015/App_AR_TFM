@@ -16,7 +16,5 @@ MonoBehaviour:
   ItemImage: {fileID: 21300000, guid: 9bb34836aa518403e9824e2f41d0c776, type: 3}
   descripciones:
   - Salida definitiva
-  - Salida 1
   positions:
   - {x: -1.61, y: -3.32, z: -1.61}
-  - {x: 2.8, y: 0.6, z: -2.8}
