@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/SelecttBuilding.unity
+    guid: d51b7dc751fb74564bf5b4f491d2b713
+  - enabled: 1
     path: Assets/Scenes/QRScanScene.unity
     guid: 724ccd96f8f94144bbd76e0cec804ba2
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 5da9edae2477f42f7bb311f691193610
+  - enabled: 1
+    path: Assets/Scenes/EscenaMuestra.unity
+    guid: e9078b2e89ea348058093a9aba164c32
   - enabled: 0
     path: Assets/Scenes/BluetoothScene.unity
     guid: 632ad9b06329dec43b0c8b1423b28ca0

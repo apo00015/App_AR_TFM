@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         Debug.Log("Inicializamos el UIManager");
+        Debug.Log("La posicion actual del singleton es de: " + ControllerPlayer.instance.positionPlayer);
+        Debug.Log("El edificio seleccionado es " + ControllerSelectBuiding.instance.edificio_seleccionado);
         GameManager.instance.OnMainMenu += ActivateMainMenu;
         GameManager.instance.OnItemsMenu += ActivateItemsMenu;
     }

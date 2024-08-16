@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake(){
         if (instance != null && instance != this){
+            Debug.Log("Destruimos el objeto GAMEMANAGERRRR");
             Destroy(gameObject);
         }else{
             instance = this;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log("La posicion actual del singleton es de: " + ControllerPlayer.instance.positionPlayer);
+        Debug.Log("El edificio seleccionado es " + ControllerSelectBuiding.instance.edificio_seleccionado);
         if (CameraAr != null){
             
              Vector3 postionMapa = CameraAr.transform.position;

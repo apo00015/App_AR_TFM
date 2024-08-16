@@ -18,4 +18,8 @@ public class ControllerMenuItems : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    public void AbrirEscena(string escena){
+        SceneManager.LoadScene(escena);
+    }
+
 }
