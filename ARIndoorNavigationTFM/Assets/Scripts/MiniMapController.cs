@@ -41,10 +41,6 @@ public class MiniMapController : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("De locos");
-        }
     }
 
     public void ShowMiniMap(){

@@ -18,7 +18,7 @@ public class ControllerPlayer : MonoBehaviour
             instance = this;
         }
 
-        // El objeto Gamemanager a de persistir en todas las escenas
+        // El objeto Gamemanager tiene que persistir en todas las escenas
         DontDestroyOnLoad(gameObject);
     }
 }

@@ -16,8 +16,8 @@ public class DataManager : MonoBehaviour
     [SerializeField] private Camera CameraAr;
     [SerializeField] private Dropdown dropdown;
 
-    private const string URL = "http://18.201.72.47:5000/service/getDocuments/"; // Reemplaza con tu URL
-    // Start is called before the first frame update
+    private const string URL = "http://18.201.72.47:5000/service/getDocuments/";
+    
     void Start()
     {
         GameManager.instance.OnItemsMenu += CreateButtons;
@@ -138,23 +138,25 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    Vector3 StringToVector3(string s)
+    Vector3 StringToVector3(string texto)
     {
         // Separar el string usando ',' como delimitador
-        string[] values = s.Split(',');
+        string[] values = texto.Split(',');
 
-        // Convertir los strings a floats y crear el Vector3
+        Debug.Log("El string de values en Datamanager es: " + values[0] + "," + values[1] + "," + values[2]);
+        // Validamos que el vector tiene 3 elementos
         if (values.Length == 3)
         {
-            float x = float.Parse(values[0]);
-            float y = float.Parse(values[1]);
-            float z = float.Parse(values[2]);
+            float x = float.Parse(values[0], System.Globalization.CultureInfo.InvariantCulture);
+            float y = float.Parse(values[1], System.Globalization.CultureInfo.InvariantCulture);
+            float z = float.Parse(values[2], System.Globalization.CultureInfo.InvariantCulture);
 
+            Debug.Log("El Vector final es: " + x + "," + y + "," + z);
             return new Vector3(x, y, z);
         }
         else
         {
-            Debug.LogError("Error en la creación del vector de posiciones para el string " + s);
+            Debug.LogError("Error en la creación del vector de posiciones para el string " + texto);
             return Vector3.zero; 
         }
     }

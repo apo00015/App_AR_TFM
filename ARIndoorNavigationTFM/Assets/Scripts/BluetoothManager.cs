@@ -15,20 +15,25 @@ public class BluetoothManager : MonoBehaviour
 
     private static AndroidJavaClass unity3dbluetoothplugin;
     private static AndroidJavaObject BluetoothConnector;
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Método para inicialziar el controlador de la escenade de Bluetooth
+    /// </summary>
     void Start()
     {
         InitBluetooth();
         isConnected = false;
     }
 
-    // creating an instance of the bluetooth class from the plugin 
+    /// <summary>
+    /// Método para crear una instancia de bluetooth y acceder al bluetooth del dispositivo
+    /// </summary>
     public void InitBluetooth()
     {
         if (Application.platform != RuntimePlatform.Android)
             return;
 
-        // Check BT and location permissions
+        // Validamos que tenemos los permisos necesarios para conectarnos al bluetooth
         if (!Permission.HasUserAuthorizedPermission(Permission.CoarseLocation)
             || !Permission.HasUserAuthorizedPermission(Permission.FineLocation)
             || !Permission.HasUserAuthorizedPermission("android.permission.BLUETOOTH_ADMIN")
@@ -54,13 +59,14 @@ public class BluetoothManager : MonoBehaviour
         BluetoothConnector = unity3dbluetoothplugin.CallStatic<AndroidJavaObject>("getInstance");
     }
 
-    // Start device scan
+    /// <summary>
+    /// Método para escanear los dispotivos bluetooth que existen en nuestra area
+    /// </summary>
     public void StartScanDevices()
     {
         if (Application.platform != RuntimePlatform.Android)
             return;
 
-        // Destroy devicesListContainer child objects for new scan display
         foreach (Transform child in devicesListContainer.transform)
         {
             Destroy(child.gameObject);
@@ -68,8 +74,10 @@ public class BluetoothManager : MonoBehaviour
 
         BluetoothConnector.CallStatic("StartScanDevices");
     }
-
-    // Stop device scan
+    
+    /// <summary>
+    /// Método para parar el escaneo de dispositivos bluetooth
+    /// </summary>
     public void StopScanDevices()
     {
         if (Application.platform != RuntimePlatform.Android)
@@ -78,16 +86,17 @@ public class BluetoothManager : MonoBehaviour
         BluetoothConnector.CallStatic("StopScanDevices");
     }
 
-    // This function will be called by Java class to update the scan status,
-    // DO NOT CHANGE ITS NAME OR IT WILL NOT BE FOUND BY THE JAVA CLASS
+    /// <summary>
+    /// Método que llamará la clase Java par ainformar que se ha actualizado el estado del escaneo de dispositivos
+    /// </summary>
     public void ScanStatus(string status)
     {
         Toast("Scan Status: " + status);
     }
 
-    // This function will be called by Java class whenever a new device is found,
-    // and delivers the new devices as a string data="MAC+NAME"
-    // DO NOT CHANGE ITS NAME OR IT WILL NOT BE FOUND BY THE JAVA CLASS
+    /// <summary>
+    /// Método que llamará la clase Java cada vez que un nuevo dispositivo ha sido encontrado
+    /// </summary>
     public void NewDeviceFound(string data)
     {
         GameObject newDevice = deviceMACText;
@@ -95,7 +104,9 @@ public class BluetoothManager : MonoBehaviour
         Instantiate(newDevice, devicesListContainer.transform);  
     }
 
-    // Get paired devices from BT settings
+    /// <summary>
+    /// Método para obtener la información de los dispositivos bluetooth que existen en un area
+    /// </summary>
     public void GetPairedDevices()
     {
         if (Application.platform != RuntimePlatform.Android)
@@ -119,7 +130,9 @@ public class BluetoothManager : MonoBehaviour
         }
     }
 
-    // Start BT connect using device MAC address "deviceAdd"
+    /// <summary>
+    /// Método para realizar la conexión con un dispositivo en función de la MAC introducida
+    /// </summary>
     public void StartConnection()
     {
         if (Application.platform != RuntimePlatform.Android)
@@ -128,7 +141,9 @@ public class BluetoothManager : MonoBehaviour
         BluetoothConnector.CallStatic("StartConnection", deviceAdd.text.ToString().ToUpper());
     }
 
-    // Stop BT connetion
+    /// <summary>
+    /// Método para detener la conexión con el dispositvo BLE
+    /// </summary>
     public void StopConnection()
     {
         if (Application.platform != RuntimePlatform.Android)
@@ -138,23 +153,27 @@ public class BluetoothManager : MonoBehaviour
             BluetoothConnector.CallStatic("StopConnection");
     }
 
-    // This function will be called by Java class to update BT connection status,
-    // DO NOT CHANGE ITS NAME OR IT WILL NOT BE FOUND BY THE JAVA CLASS
+    /// <summary>
+    /// Método que llamará la clase de Java para validar el estado de conexión con el dispositivo conectado
+    /// </summary>
     public void ConnectionStatus(string status)
     {
         Toast("Connection Status: " + status);
         isConnected = status == "connected";
     }
 
-    // This function will be called by Java class whenever BT data is received,
-    // DO NOT CHANGE ITS NAME OR IT WILL NOT BE FOUND BY THE JAVA CLASS
+    /// <summary>
+    /// Método que llamaará la clase Java en caso de recibir datos del dispositivo con el que se está conectado
+    /// </summary>
     public void ReadData(string data)
     {
         Debug.Log("BT Stream: " + data);
         receivedData.text = data;
     }
 
-    // Write data to the connected BT device
+    /// <summary>
+    /// Método para enviar datos al dispositivo Bluetooth conectado
+    /// </summary>
     public void WriteData()
     {
         if (Application.platform != RuntimePlatform.Android)
@@ -164,15 +183,18 @@ public class BluetoothManager : MonoBehaviour
             BluetoothConnector.CallStatic("WriteData", dataToSend.text.ToString());
     }
 
-    // This function will be called by Java class to send Log messages,
-    // DO NOT CHANGE ITS NAME OR IT WILL NOT BE FOUND BY THE JAVA CLASS
+    /// <summary>
+    /// Método que será llamado por la clase Java para enviar los mensajes de logs
+    /// </summary>
     public void ReadLog(string data)
     {
         Debug.Log(data);
     }
 
 
-    // Function to display an Android Toast message
+    /// <summary>
+    /// Método para mostrar un toast en la escena de bluetooth
+    /// </summary>
     public void Toast(string data)
     {
         if (Application.platform != RuntimePlatform.Android)

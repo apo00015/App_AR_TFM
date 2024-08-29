@@ -30,19 +30,26 @@ public class QRDecodeTest : MonoBehaviour
 
 				// Asignamos las variables a la clase Singleton
 				ControllerPlayer.instance.positionPlayer = positionPlayer;
-
+				string escenaRA = "";
+				switch (ControllerSelectBuiding.instance.edificio_seleccionado){
+					case 1:
+						escenaRA = "Main";
+						break;
+					case 2:
+						escenaRA = "EscenaMuestra";
+						break;
+				}
 				Stop();
+				// Redirigimos al usuario en función del edificio seleccionado
+
 				// Volvemos a la escena main
-				SceneManager.LoadScene("Main");
+				SceneManager.LoadScene(escenaRA);
 			}
-			catch (Exception ex)
-			{
+			catch (Exception ex){
 				showToast("No se reconoce el formato del QR");
 				Reset();
 			}
-			
 		}
-
 	}
 
 	public void Reset()

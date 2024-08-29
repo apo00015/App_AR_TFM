@@ -5,19 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ControllerMenuItems : MonoBehaviour
 {
-    public static bool is_open_panelQR = false;
-    public void AbrirEscenaBluetooth(){
-        SceneManager.LoadScene("BluetoothScene");
-    }
-
-    public void AbrirEscenaQR(){
-        SceneManager.LoadScene("QRScanScene");
-    }
-
-    public void AbrirEscenaMain(){
-        SceneManager.LoadScene("Main");
-    }
-
     public void AbrirEscena(string escena){
         SceneManager.LoadScene(escena);
     }

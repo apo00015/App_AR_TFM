@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
 
     private void ActivateItemsMenu(){
         Debug.Log("Entramos en el metodo de ActivateItemsMenu");
-        // Abrimos los itemes del canvas de itemsMenu
+        // Abrimos los items del canvas de itemsMenu
         
         itemsMenuCanvas.transform.GetChild(0).transform.DOScale(new Vector3(1,1,1), 0.5f);
         itemsMenuCanvas.transform.GetChild(1).transform.DOScale(new Vector3(1,1,1), 0.3f);
