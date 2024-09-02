@@ -40,7 +40,7 @@ public class ItemButtonManager : MonoBehaviour
 
     void Update(){
         if (itemName == nameItemSeleccionado){
-            if(!isDireccionConcreta){
+            if(!ControllerBlockRoute.instance.changeManual){
                 //Debug.Log("Calcukamos el mas cercano");
                 getItemCercano();
             }
@@ -114,8 +114,11 @@ public class ItemButtonManager : MonoBehaviour
     }
 
     void DropdownValueChanged(Dropdown dropdown){
+        Debug.Log("Llamamos al Dropdown value change ---- " + ControllerPlayer.instance.changeManual);
         // Habilitamos la variable direccion concreta
-        isDireccionConcreta = true;
+        if (ControllerBlockRoute.instance.changeManual){
+            isDireccionConcreta = true;
+        }
         
         // Obtener el índice de la opción seleccionada
         int posSeleccionada = dropdown.value;

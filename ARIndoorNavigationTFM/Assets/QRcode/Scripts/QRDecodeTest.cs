@@ -21,9 +21,9 @@ public class QRDecodeTest : MonoBehaviour
 				string[] valoresData = dataText.Split(',');
 				// Parse the values and create the vectors
 				Vector3 positionPlayer = new Vector3(
-					float.Parse(valoresData[0]),
-					float.Parse(valoresData[1]),
-					float.Parse(valoresData[2])
+					float.Parse(valoresData[0], System.Globalization.CultureInfo.InvariantCulture),
+					float.Parse(valoresData[1], System.Globalization.CultureInfo.InvariantCulture),
+					float.Parse(valoresData[2], System.Globalization.CultureInfo.InvariantCulture)
 				);
 		
 				this.scanLineObj.SetActive(false);

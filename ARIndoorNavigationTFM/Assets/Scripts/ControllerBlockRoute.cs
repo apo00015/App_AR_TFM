@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class ControllerPlayer : MonoBehaviour
+public class ControllerBlockRoute : MonoBehaviour
 {
 
-    public Vector3 positionPlayer;
-    public Vector3 rotationPlayer;
     public bool changeManual = false;
     // Patrón Singleton
-    public static ControllerPlayer instance { get; private set; }
+    public static ControllerBlockRoute instance { get; private set; }
 
     private void Awake(){
         if (instance != null && instance != this){

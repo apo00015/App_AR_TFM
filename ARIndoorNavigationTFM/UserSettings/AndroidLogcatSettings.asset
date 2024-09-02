@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "9WV4C18A19040669",
         "name": "com.Adrian.AR_TFM",
-        "processId": 28860,
+        "processId": 29664,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -13,12 +13,6 @@
             "name": "com.huawei.android.launcher",
             "processId": 1809,
             "exited": false
-        },
-        {
-            "deviceId": "9WV4C18A19040669",
-            "name": "com.Adrian.AR_TFM",
-            "processId": 23317,
-            "exited": true
         },
         {
             "deviceId": "9WV4C18A19040669",
@@ -42,6 +36,12 @@
             "deviceId": "9WV4C18A19040669",
             "name": "com.Adrian.AR_TFM",
             "processId": 28860,
+            "exited": true
+        },
+        {
+            "deviceId": "9WV4C18A19040669",
+            "name": "com.Adrian.AR_TFM",
+            "processId": 29664,
             "exited": false
         }
     ],
