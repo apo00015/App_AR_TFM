@@ -69,7 +69,7 @@ public class MiniMapController : MonoBehaviour
         minimap.rectTransform.anchoredPosition = centerPosition;
 
         // Aumentamos la distancia del mapa
-        CameraMapa.orthographicSize = 2.5f;
+        CameraMapa.orthographicSize = 1.5f;
 
         // Habilitamos el script de desplazamiento por el mapa
         CameraMapa.GetComponent<DigitalRubyShared.FingersCameraMove3DComponentScript>().enabled = true;
@@ -90,7 +90,7 @@ public class MiniMapController : MonoBehaviour
         isFullScreen = false;
 
         // Volvemos al tamaño original de la camara
-        CameraMapa.orthographicSize = 2.5f;
+        CameraMapa.orthographicSize = 1.5f;
 
         // Deshabilitamos el script de desplazamiento por el mapa
         CameraMapa.GetComponent<DigitalRubyShared.FingersCameraMove3DComponentScript>().enabled = false;

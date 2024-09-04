@@ -89,8 +89,21 @@ public class SetNavigationTarget : MonoBehaviour
         // Comprobamos si debemos calcular la ruta hacia un objetivo válido
         if (navTargetObject.activeSelf){
             NavMesh.CalculatePath(spehereOrigin.transform.position, navTargetObject.transform.position, NavMesh.AllAreas, path);
-            line.positionCount = path.corners.Length;
-            line.SetPositions(path.corners);
+            // Verifica si hay al menos 15 puntos en el array path.corners
+            int count = Mathf.Min(4, path.corners.Length);
+
+            // Crea un array temporal para almacenar los primeros 15 puntos (o menos si no hay 15)
+            Vector3[] firstCorners = new Vector3[count];
+
+            // Copia los primeros 4 puntos (o los que haya) en el array temporal
+            for (int i = 0; i < count; i++){
+                firstCorners[i] = path.corners[i];
+            }
+            // Asigna los puntos al LineRenderer
+            line.positionCount = count;
+            line.SetPositions(firstCorners);
+
+            // Activa el LineRenderer
             line.enabled = true;
         }else{
             line.enabled = false;
